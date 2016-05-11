@@ -1,0 +1,13 @@
+{
+  "name": "addis-log_pull",
+  "version": "0.0.2",
+  "author": "LandRegistry, Addi",
+  "summary": "A puppet module to manage the logstash install for inserting messages into ELK",
+  "license": "MIT",
+  "source": "https://github.com/addi-abel/addis-log_pull",
+  "project_page": "https://github.com/addi-abel/addis-log_pull",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}

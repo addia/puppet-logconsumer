@@ -1,0 +1,34 @@
+#  ______________________________________
+# / NOTE: this file is managed by Puppet \
+# \ - do not change it here, ever!       /
+#  --------------------------------------
+#         \   ^__^
+#          \  (OO)\_______
+#             (__)\       )\/\
+#                 ||----w |
+#                 ||     ||
+#
+# ----------------------------------------
+#
+#
+# Logstash - log-consumer Output
+#   -  output to ELK
+#   -  this config File <%= @config_input %>
+#   -  this config file lives in <%= @config_dir %>
+#
+#
+output {
+  elasticsearch {
+    hosts => "<%= @elastic_address %>"
+    sniffing => true
+    manage_template => false
+    index => "%{[@metadata][beat]}-%{+YYYY.MM.dd}"
+    document_type => "%{[@metadata][type]}"
+  }
+  stdout {
+    codec => rubydebug
+  }
+}
+
+
+# vim: set ts=2 sw=2 et :

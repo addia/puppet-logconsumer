@@ -1,0 +1,34 @@
+#  ______________________________________
+# / NOTE: this file is managed by Puppet \
+# \ - do not change it here, ever!       /
+#  --------------------------------------
+#         \   ^__^
+#          \  (OO)\_______
+#             (__)\       )\/\
+#                 ||----w |
+#                 ||     ||
+#
+# ----------------------------------------
+#
+#
+# Logstash systemd service file
+#
+#
+[Unit]
+Description=Logstash service to push received messages from RabbitMQ into ELK
+After=network.target
+
+[Service]
+Type=simple
+User=<%= @user %>
+Group=<%= @group %>
+PIDFile=/run/logstash.pid
+
+ExecStart=/opt/logstash/bin/logstash agent -f <%= @config_dir %>
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
