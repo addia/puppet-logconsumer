@@ -28,10 +28,6 @@ class logconsumer::config (
 
   $config_input       = "$config_dir/03_logstash-mq-input.conf"
   $config_output      = "$config_dir/32_logstash-elk-output.conf"
-  $rabbitmq_cert      = "$ssl_dir/$rabbit_cert"
-  $rabbitmq_key       = "$ssl_dir/$rabbit_key"
-  $elastic_cert       = "$ssl_dir/$elastic_cert"
-  $elastic_key        = "$ssl_dir/$elastic_key"
 
 
   file { $config_dir:
