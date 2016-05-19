@@ -1,4 +1,4 @@
-# == Class log-consumer::params
+# == Class logconsumer::params
 # =============================
 #
 #
@@ -9,7 +9,7 @@
 #
 # ===========================
 #
-class log-consumer::params {
+class logconsumer::params {
 
   $ensure             = 'present'
   $status             = 'enabled'
@@ -21,7 +21,7 @@ class log-consumer::params {
   $rabbit_crt         = 'rabbitmq-client.crt'
   $elastic_key        = 'elastic-client.key'
   $elastic_crt        = 'elastic-client.crt'
-  $service            = 'log-consumer.service'
+  $service            = 'logconsumer.service'
   $systemd_file       = "/usr/lib/systemd/system/${service}"
   $rabbit_address     = hiera('elk_stack_rabbitmq_address')
   $elastic_address    = hiera('elk_stack_elastic_address')

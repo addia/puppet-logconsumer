@@ -1,4 +1,4 @@
-# == Class log-consumer::install
+# == Class logconsumer::install
 # ==============================
 #
 #
@@ -9,12 +9,12 @@
 #
 # ===========================
 #
-class log-consumer::install (
-  $ensure             = $log-consumer::ensure,
-  $package_name       = $log-consumer::package_name
-  ) inherits log-consumer::params {
+class logconsumer::install (
+  $ensure             = $logconsumer::ensure,
+  $package_name       = $logconsumer::package_name
+  ) inherits logconsumer::params {
 
-  include log-consumer::repo
+  include logconsumer::repo
 
   notify { "Installing package: ${package_name}": }
 

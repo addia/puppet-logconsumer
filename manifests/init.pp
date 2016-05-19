@@ -1,4 +1,4 @@
-# == Class: log-consumer
+# == Class: logconsumer
 # ===========================
 #
 #
@@ -47,33 +47,33 @@
 # Copyright:  ©  2016  LR / Addi.
 #
 #
-class log-consumer (
-  $ensure             = $log-consumer::params::ensure,
-  $status             = $log-consumer::params::status,
-  $user               = $log-consumer::params::user,
-  $group              = $log-consumer::params::group,
-  $config_dir         = $log-consumer::params::config_dir,
-  $ssl_dir            = $log-consumer::params::ssl_dir,
+class logconsumer (
+  $ensure             = $logconsumer::params::ensure,
+  $status             = $logconsumer::params::status,
+  $user               = $logconsumer::params::user,
+  $group              = $logconsumer::params::group,
+  $config_dir         = $logconsumer::params::config_dir,
+  $ssl_dir            = $logconsumer::params::ssl_dir,
   $rabbit_key         = $log-receiver::params::rabbit_key,
   $rabbit_crt         = $log-receiver::params::rabbit_crt,
   $elastic_key        = $log-receiver::params::elastic_key,
   $elastic_crt        = $log-receiver::params::elastic_crt,
-  $service            = $log-consumer::params::service,
-  $systemd_file       = $log-consumer::params::systemd_file,
-  $rabbit_address     = $log-consumer::params::rabbit_address,
-  $elastic_address    = $log-consumer::params::elastic_address,
-  $package_name       = $log-consumer::params::package_name,
-  $repo_version       = $log-consumer::params::repo_version
-) inherits log-consumer::params {
+  $service            = $logconsumer::params::service,
+  $systemd_file       = $logconsumer::params::systemd_file,
+  $rabbit_address     = $logconsumer::params::rabbit_address,
+  $elastic_address    = $logconsumer::params::elastic_address,
+  $package_name       = $logconsumer::params::package_name,
+  $repo_version       = $logconsumer::params::repo_version
+) inherits logconsumer::params {
 
     notify { "Installing and configuring ${logstash_pkg}": }
 
-    anchor { 'log-consumer::begin': } ->
-    class { '::log-consumer::accounts': } ->
-    class { '::log-consumer::install': } ->
-    class { '::log-consumer::config': } ->
-    class { '::log-consumer::service': } ->
-    anchor { 'log-consumer::end': }
+    anchor { 'logconsumer::begin': } ->
+    class { '::logconsumer::accounts': } ->
+    class { '::logconsumer::install': } ->
+    class { '::logconsumer::config': } ->
+    class { '::logconsumer::service': } ->
+    anchor { 'logconsumer::end': }
 
 }
 

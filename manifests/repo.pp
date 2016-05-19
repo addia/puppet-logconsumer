@@ -1,4 +1,4 @@
-# == Class log-consumer::repo
+# == Class logconsumer::repo
 # ===========================
 #
 #
@@ -9,10 +9,10 @@
 #
 # ===========================
 #
-class log-consumer::repo (
-  $repo_version  = $log-consumer::repo_version,
-  $logstash_pkg  = $log-consumer::logstash_pkg
-  ) inherits log-consumer::params {
+class logconsumer::repo (
+  $repo_version  = $logconsumer::repo_version,
+  $logstash_pkg  = $logconsumer::logstash_pkg
+  ) inherits logconsumer::params {
 
   notify { "Creating repo for: ${::osfamily}": }
 

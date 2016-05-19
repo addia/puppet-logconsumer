@@ -1,4 +1,4 @@
-# == Class log-consumer::config
+# == Class logconsumer::config
 # =============================
 #
 #
@@ -9,20 +9,20 @@
 #
 # ===========================
 #
-class log-consumer::config (
-  $user               = $log-consumer::params::user,
-  $group              = $log-consumer::params::group,
-  $service            = $log-consumer::params::service,
-  $rabbit_address     = $log-consumer::params::rabbit_address,
-  $ssl_dir            = $log-consumer::params::ssl_dir,
+class logconsumer::config (
+  $user               = $logconsumer::params::user,
+  $group              = $logconsumer::params::group,
+  $service            = $logconsumer::params::service,
+  $rabbit_address     = $logconsumer::params::rabbit_address,
+  $ssl_dir            = $logconsumer::params::ssl_dir,
   $rabbit_key         = $log-receiver::params::rabbit_key,
   $rabbit_crt         = $log-receiver::params::rabbit_crt,
   $elastic_key        = $log-receiver::params::elastic_key,
   $elastic_crt        = $log-receiver::params::elastic_crt,
-  $config_dir         = $log-consumer::params::config_dir,
-  $package_name       = $log-consumer::params::package_name
+  $config_dir         = $logconsumer::params::config_dir,
+  $package_name       = $logconsumer::params::package_name
 
-  ) inherits log-consumer::params {
+  ) inherits logconsumer::params {
 
   notify { "Creating config files for: ${package_name}": }
 
@@ -85,7 +85,7 @@ class log-consumer::config (
     owner             => $user,
     group             => $group,
     mode              => '0644',
-    content           => template('log-consumer/03_logstash-mq-input-conf.erb'),
+    content           => template('logconsumer/03_logstash-mq-input-conf.erb'),
     notify            => Service[$service]
   }
 
@@ -94,7 +94,7 @@ class log-consumer::config (
     owner             => $user,
     group             => $group,
     mode              => '0644',
-    content           => template('log-consumer/32_logstash-elk-output-conf.erb'),
+    content           => template('logconsumer/32_logstash-elk-output-conf.erb'),
     notify            => Service[$service]
   }
 

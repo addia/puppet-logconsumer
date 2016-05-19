@@ -1,4 +1,4 @@
-# == Class log-consumer::accounts
+# == Class logconsumer::accounts
 # ===============================
 #
 #
@@ -9,12 +9,12 @@
 #
 # ===========================
 #
-class log-consumer::accounts (
-  $user               = $log-consumer::params::user,
-  $group              = $log-consumer::params::group,
-  $package_name       = $log-consumer::params::package_name
+class logconsumer::accounts (
+  $user               = $logconsumer::params::user,
+  $group              = $logconsumer::params::group,
+  $package_name       = $logconsumer::params::package_name
 
-  ) inherits log-consumer::params {
+  ) inherits logconsumer::params {
 
   notify { "Creating accounts for: ${package_name}": }
 

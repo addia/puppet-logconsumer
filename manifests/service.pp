@@ -1,4 +1,4 @@
-# == Class log-consumer::service
+# == Class logconsumer::service
 # ==============================
 #
 #
@@ -9,12 +9,12 @@
 #
 # ===========================
 #
-class log-consumer::service (
-  $systemd_file       = $log-consumer::params::systemd_file,
-  $service            = $log-consumer::params::service,
-  $package_name       = $log-consumer::params::package_name
+class logconsumer::service (
+  $systemd_file       = $logconsumer::params::systemd_file,
+  $service            = $logconsumer::params::service,
+  $package_name       = $logconsumer::params::package_name
 
-  ) inherits log-consumer::params {
+  ) inherits logconsumer::params {
 
   notify { "Configuring service: ${service}": }
   
