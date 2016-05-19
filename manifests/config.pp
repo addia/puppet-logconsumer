@@ -15,10 +15,10 @@ class logconsumer::config (
   $service            = $logconsumer::params::service,
   $rabbit_address     = $logconsumer::params::rabbit_address,
   $ssl_dir            = $logconsumer::params::ssl_dir,
-  $rabbit_key         = $log-receiver::params::rabbit_key,
-  $rabbit_crt         = $log-receiver::params::rabbit_crt,
-  $elastic_key        = $log-receiver::params::elastic_key,
-  $elastic_crt        = $log-receiver::params::elastic_crt,
+  $rabbit_key         = $logconsumer::params::rabbit_key,
+  $rabbit_crt         = $logconsumer::params::rabbit_crt,
+  $elastic_key        = $logconsumer::params::elastic_key,
+  $elastic_crt        = $logconsumer::params::elastic_crt,
   $config_dir         = $logconsumer::params::config_dir,
   $package_name       = $logconsumer::params::package_name
 
