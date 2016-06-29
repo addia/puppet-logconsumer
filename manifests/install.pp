@@ -22,7 +22,7 @@ class logconsumer::install (
     ensure            => present,
   }
   package { $package_name:
-    ensure            => $ensure
+    ensure            => latest,
   }
 }
 

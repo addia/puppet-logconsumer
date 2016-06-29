@@ -14,6 +14,8 @@
 #     status             = default service state
 #     user               = run as user
 #     group              = run as group
+#     password           = logstash password
+#     passkey            = logstash keypass
 #     config_dir         = prospector plug-in directory path
 #     ssl_dir            = certificate path
 #     rabbit_key         = rabbit key
@@ -52,6 +54,8 @@ class logconsumer (
   $status             = $logconsumer::params::status,
   $user               = $logconsumer::params::user,
   $group              = $logconsumer::params::group,
+  $password           = $logreceiver::params::password,
+  $passkey            = $logreceiver::params::passkey,
   $config_dir         = $logconsumer::params::config_dir,
   $ssl_dir            = $logconsumer::params::ssl_dir,
   $rabbit_key         = $logconsumer::params::rabbit_key,

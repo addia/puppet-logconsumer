@@ -15,6 +15,8 @@ class logconsumer::params {
   $status             = 'enabled'
   $user               = 'logstash'
   $group              = 'logstash'
+  $password           = hiera('elk_stack_logstash_passwd')
+  $passkey            = hiera('elk_stack_logstash_key')
   $config_dir         = '/etc/logstash/conf.d'
   $ssl_dir            = '/etc/logstash/ssl'
   $rabbit_key         = 'rabbitmq-client.key'
@@ -26,7 +28,7 @@ class logconsumer::params {
   $rabbit_address     = hiera('elk_stack_rabbitmq_address')
   $elastic_address    = hiera('elk_stack_elastic_address')
   $package_name       = 'logstash'
-  $repo_version       = '2.2'
+  $repo_version       = '2.3'
 
 }
 
