@@ -19,20 +19,20 @@
 #
 input {
   rabbitmq {
+    host => "<%= @rabbit_address %>"
+    port => 5671
+    vhost => "lr-hare"
     exchange => "logstash"
     queue => "log-item"
-    host => "<%= @rabbit_address %>"
-    exchange_type => "direct"
-    key => "logstash-key"
-    user => "logstash"
-    password => "logstash1"
+    exchange_type => "topic"
     durable => "true"
     persistent => true
+    key => "<%= @passkey %>"
+    user => "logstash"
+    password => "<%= @password %>"
     ssl => true
-    port => 5671
-    verify_ssl => false
-    ssl_certificate => "<%= @rabbitmq_cert %>"
-    ssl_key => "<%= @rabbitmq_key %>"
+    ssl_certificate_path => "<%= @ssl_dir %>/<%= @rabbit_p12 %>"
+    ssl_certificate_password => ""
   }
 }
 

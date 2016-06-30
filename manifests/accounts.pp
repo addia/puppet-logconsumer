@@ -13,15 +13,14 @@ class logconsumer::accounts (
   $user               = $logconsumer::params::user,
   $group              = $logconsumer::params::group,
   $package_name       = $logconsumer::params::package_name
-
-  ) inherits logconsumer::params {
+) inherits logconsumer::params {
 
   notify { "Creating accounts for: ${package_name}": }
 
   group {  $group:
     ensure     => present,
     gid        => 252
-  }
+    }
 
   user { $user: 
     ensure     => present,
@@ -31,9 +30,9 @@ class logconsumer::accounts (
     gid        => '252',
     password   => '!',
     managehome => true,
-  }
+    }
 
-}
+  }
 
 
 # vim: set ts=2 sw=2 et :

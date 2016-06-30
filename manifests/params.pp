@@ -21,6 +21,7 @@ class logconsumer::params {
   $ssl_dir            = '/etc/logstash/ssl'
   $rabbit_key         = 'rabbitmq-client.key'
   $rabbit_crt         = 'rabbitmq-client.crt'
+  $rabbit_p12         = 'rabbitmq-client.p12'
   $elastic_key        = 'elastic-client.key'
   $elastic_crt        = 'elastic-client.crt'
   $service            = 'logconsumer.service'
@@ -28,6 +29,7 @@ class logconsumer::params {
   $rabbit_address     = hiera('elk_stack_rabbitmq_address')
   $elastic_address    = hiera('elk_stack_elastic_address')
   $package_name       = 'logstash'
+  $package_vers       = '2.3.3-1'
   $repo_version       = '2.3'
 
 }

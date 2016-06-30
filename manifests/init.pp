@@ -20,6 +20,7 @@
 #     ssl_dir            = certificate path
 #     rabbit_key         = rabbit key
 #     rabbit_crt         = rabbit cert
+#     rabbit_p12         = rabbitmq-client p12 file
 #     elastic_key        = elastic key
 #     elastic_crt        = elastic cert
 #     service            = systemd service file name
@@ -27,6 +28,7 @@
 #     rabbit_address     = rabbitmq server/cluster address IP or DNS
 #     elastic_address    = elastic server/cluster address IP or DNS
 #     package_name       = the package name to install and configure
+#     package_vers       = the package version to install and configure
 #     repo_version       = the repo version
 #
 #
@@ -60,6 +62,7 @@ class logconsumer (
   $ssl_dir            = $logconsumer::params::ssl_dir,
   $rabbit_key         = $logconsumer::params::rabbit_key,
   $rabbit_crt         = $logconsumer::params::rabbit_crt,
+  $rabbit_p12         = $logreceiver::params::rabbit_p12,
   $elastic_key        = $logconsumer::params::elastic_key,
   $elastic_crt        = $logconsumer::params::elastic_crt,
   $service            = $logconsumer::params::service,
@@ -67,10 +70,11 @@ class logconsumer (
   $rabbit_address     = $logconsumer::params::rabbit_address,
   $elastic_address    = $logconsumer::params::elastic_address,
   $package_name       = $logconsumer::params::package_name,
+  $package_vers       = $logreceiver::params::package_vers,
   $repo_version       = $logconsumer::params::repo_version
 ) inherits logconsumer::params {
 
-    notify { "Installing and configuring ${logstash_pkg}": }
+    notify { "Installing and configuring ${package_name}": }
 
     anchor { 'logconsumer::begin': } ->
     class { '::logconsumer::accounts': } ->
@@ -79,7 +83,7 @@ class logconsumer (
     class { '::logconsumer::service': } ->
     anchor { 'logconsumer::end': }
 
-}
+  }
 
 
 # vim: set ts=2 sw=2 et :

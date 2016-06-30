@@ -14,7 +14,7 @@ class logconsumer::service (
   $service            = $logconsumer::params::service,
   $package_name       = $logconsumer::params::package_name
 
-  ) inherits logconsumer::params {
+) inherits logconsumer::params {
 
   notify { "Configuring service: ${service}": }
   
@@ -25,7 +25,7 @@ class logconsumer::service (
     mode              => '0644',
     content           => template('logconsumer/logconsumer_service.erb'),
     notify            => Service[$service]
-  }
+    }
 
   service { $service:
     ensure            => running,
@@ -33,9 +33,14 @@ class logconsumer::service (
     hasrestart        => true,
     hasstatus         => true,
     require           => File[$systemd_file]
-  }
+    }
 
-}
+  service { 'logstash.service':
+    ensure            => stopped,
+    enable            => false
+    }
+
+  }
 
 
 # vim: set ts=2 sw=2 et :
