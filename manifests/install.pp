@@ -10,9 +10,8 @@
 # ===========================
 #
 class logconsumer::install (
-  $ensure             = $logconsumer::ensure,
-  $package_name       = $logconsumer::package_name,
-  $package_vers       = $logreceiver::params::package_vers
+  $package_name       = $logconsumer::params::package_name,
+  $package_vers       = $logconsumer::params::package_vers
 ) inherits logconsumer::params {
 
   include logconsumer::repo

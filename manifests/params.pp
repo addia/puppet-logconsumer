@@ -11,8 +11,6 @@
 #
 class logconsumer::params {
 
-  $ensure             = 'present'
-  $status             = 'enabled'
   $user               = 'logstash'
   $group              = 'logstash'
   $password           = hiera('elk_stack_logstash_passwd')

@@ -10,8 +10,6 @@
 # Document all Parameters:
 #
 #   Explanation of what this parameter affects and what it defaults to.
-#     ensure             = package install status
-#     status             = default service state
 #     user               = run as user
 #     group              = run as group
 #     password           = logstash password
@@ -53,8 +51,6 @@
 #
 #
 class logconsumer (
-  $ensure             = $logconsumer::params::ensure,
-  $status             = $logconsumer::params::status,
   $user               = $logconsumer::params::user,
   $group              = $logconsumer::params::group,
   $password           = $logreceiver::params::password,
