@@ -10,34 +10,40 @@
 # ===========================
 #
 class logconsumer::service (
-  $systemd_file       = $logconsumer::params::systemd_file,
-  $service            = $logconsumer::params::service,
-  $package_name       = $logconsumer::params::package_name
+  $systemd_file         = $logconsumer::params::systemd_file,
+  $service              = $logconsumer::params::service,
+  $package_name         = $logconsumer::params::package_name
 
 ) inherits logconsumer::params {
 
-  notify { "Configuring service: ${service}": }
+  notify { "Configuring service: ${package_name}": }
   
   file { $systemd_file:
-    ensure            => file,
-    owner             => 'root',
-    group             => 'root',
-    mode              => '0644',
-    content           => template('logconsumer/logconsumer_service.erb'),
-    notify            => Service[$service]
+    ensure              => file,
+    owner               => 'root',
+    group               => 'root',
+    mode                => '0644',
+    content             => template('logconsumer/logconsumer_service.erb'),
+    notify              => Service[$service]
     }
 
   service { $service:
-    ensure            => running,
-    enable            => true,
-    hasrestart        => true,
-    hasstatus         => true,
-    require           => File[$systemd_file]
+    ensure              => running,
+    enable              => true,
+    hasrestart          => true,
+    hasstatus           => true,
+    require             => File[$systemd_file]
     }
 
   service { 'logstash.service':
-    ensure            => stopped,
-    enable            => false
+    ensure              => stopped,
+    enable              => false
+    }
+
+  exec { 'remove_initd_logstash':
+    command             => "rm -f /etc/rc.d/init.d/logstash",
+    path                => "/sbin:/bin:/usr/sbin:/usr/bin",
+    onlyif              => "test -x /etc/rc.d/init.d/logstash",
     }
 
   }
