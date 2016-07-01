@@ -19,11 +19,10 @@
 #
 output {
   elasticsearch {
-    hosts => "<%= @elastic_address %>"
-    sniffing => true
-    manage_template => false
-    index => "%{[@metadata][beat]}-%{+YYYY.MM.dd}"
-    document_type => "%{[@metadata][type]}"
+    hosts => [ <%= @elastic_address.map { |n| "\"https://#{n}:9200\"" }.join(', ') %> ]
+    ssl => true
+    keystore => "<%= @ssl_dir %>/<%= @elastic_p12 %>"
+    keystore_password => ""
   }
   stdout {
     codec => rubydebug

@@ -21,6 +21,7 @@ class logconsumer::config (
   $rabbit_p12         = $logreceiver::params::rabbit_p12,
   $elastic_key        = $logconsumer::params::elastic_key,
   $elastic_crt        = $logconsumer::params::elastic_crt,
+  $elastic_p12        = $logconsumer::params::elastic_p12,
   $service            = $logconsumer::params::service,
   $rabbit_address     = $logconsumer::params::rabbit_address,
   $package_name       = $logconsumer::params::package_name
@@ -30,9 +31,8 @@ class logconsumer::config (
   notify { "Creating config files for: ${package_name}": }
 
   $config_input       = "$config_dir/03_logstash-mq-input.conf"
+  $config_filter      = "$config_dir/10_filter.conf"
   $config_output      = "$config_dir/32_logstash-elk-output.conf"
-  $rabbitmq_crt       = "$ssl_dir/$rabbit_crt"
-  $rabbitmq_key       = "$ssl_dir/$rabbit_key"
 
   file { $config_dir:
     ensure            => directory,
@@ -54,6 +54,15 @@ class logconsumer::config (
     group             => $group,
     mode              => '0644',
     content           => template('logconsumer/03_logstash-mq-input-conf.erb'),
+    notify            => Service[$service]
+    }
+
+  file { $config_filter: 
+    ensure            => file,
+    owner             => $user,
+    group             => $group,
+    mode              => '0644',
+    content           => "puppet:///modules/logconsumer/10_filter.conf",
     notify            => Service[$service]
     }
 
@@ -105,6 +114,15 @@ class logconsumer::config (
     group             => $group,
     mode              => '0644',
     content           => hiera('elk_stack_elastic_cert')
+    }
+
+  openssl::export::pkcs12 { 'elastic-client':
+    ensure            => 'present',
+    basedir           => $ssl_dir,
+    pkey              => "$ssl_dir/$elastic_key",
+    cert              => "$ssl_dir/$elastic_crt",
+    in_pass           => "",
+    out_pass          => "",
     }
 
   }

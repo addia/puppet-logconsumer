@@ -20,9 +20,10 @@
 #     ssl_dir            = certificate path
 #     rabbit_key         = rabbit key
 #     rabbit_crt         = rabbit cert
-#     rabbit_p12         = rabbitmq-client p12 file
+#     rabbit_p12         = rabbitmq-client p12 cert file
 #     elastic_key        = elastic key
 #     elastic_crt        = elastic cert
+#     elastic_p12        = elastic p12 cert file
 #     service            = systemd service file name
 #     systemd_file       = systemd service file including full path
 #     rabbit_address     = rabbitmq server/cluster address IP or DNS
@@ -65,6 +66,7 @@ class logconsumer (
   $rabbit_p12         = $logreceiver::params::rabbit_p12,
   $elastic_key        = $logconsumer::params::elastic_key,
   $elastic_crt        = $logconsumer::params::elastic_crt,
+  $elastic_p12        = $logconsumer::params::elastic_p12,
   $service            = $logconsumer::params::service,
   $systemd_file       = $logconsumer::params::systemd_file,
   $rabbit_address     = $logconsumer::params::rabbit_address,

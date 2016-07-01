@@ -9,10 +9,10 @@ As there are probably 1000s of log filters available the number of files here wi
 The provided syslog filter should be very static.
 The provided jenkins filter is just meant as an example, please amend as required:  https://gist.github.com/evilchili/7046534
 
+Hint:  save the individual filter here, then merge the filter into the donf file to be deployed - TEST it first though ...
+
 ( oh and watch the spacing!!! )
 
-
-As it seams that the config files are loaded by numeric order, make sure input is first, output is last and filters in between those two.
 
 
 Addi - January 2016

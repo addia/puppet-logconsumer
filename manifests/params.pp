@@ -24,6 +24,7 @@ class logconsumer::params {
   $rabbit_p12         = 'rabbitmq-client.p12'
   $elastic_key        = 'elastic-client.key'
   $elastic_crt        = 'elastic-client.crt'
+  $elastic_p12        = 'elastic-client.p12'
   $service            = 'logconsumer.service'
   $systemd_file       = "/usr/lib/systemd/system/${service}"
   $rabbit_address     = hiera('elk_stack_rabbitmq_address')

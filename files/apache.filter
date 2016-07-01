@@ -1,0 +1,9 @@
+
+  if [type] == "apache" {
+    grok {
+      match => [ "message", "%{IP:client_ip} %{USER:ident} %{USER:auth} \[%{HTTPDATE:apache_timestamp}\] \"%{WORD:method} /%{NOTSPACE:request_page} HTTP/%{NUMBER:http_version}\" %{NUMBER:server_response} " ]
+      add_field => [ "received_at", "%{@timestamp}" ]
+      add_field => [ "received_from", "%{host}" ]
+    }
+  }
+
