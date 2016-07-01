@@ -62,7 +62,7 @@ class logconsumer::config (
     owner             => $user,
     group             => $group,
     mode              => '0644',
-    content           => "puppet:///modules/logconsumer/10_filter.conf",
+    source            => "puppet:///modules/logconsumer/10_filter.conf",
     notify            => Service[$service]
     }
 
