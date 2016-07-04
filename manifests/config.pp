@@ -21,9 +21,13 @@ class logconsumer::config (
   $rabbit_p12         = $logconsumer::params::rabbit_p12,
   $elastic_key        = $logconsumer::params::elastic_key,
   $elastic_crt        = $logconsumer::params::elastic_crt,
-  $elastic_p12        = $logconsumer::params::elastic_p12,
+  $elastic_ca_cert    = $logconsumer::params::elastic_ca_cert,
+  $keystore_dir       = $logconsumer::params::keystore_dir,
+  $keystore_passwd    = $logconsumer::params::keystore_passwd,
   $service            = $logconsumer::params::service,
   $rabbit_address     = $logconsumer::params::rabbit_address,
+  $elastic_address    = $logconsumer::params::elastic_address,
+  $elastic_instance   = $logconsumer::params::elastic_instance,
   $package_name       = $logconsumer::params::package_name
 
 ) inherits logconsumer::params {
@@ -116,13 +120,20 @@ class logconsumer::config (
     content           => hiera('elk_stack_elastic_cert')
     }
 
-  openssl::export::pkcs12 { 'elastic-client':
-    ensure            => 'present',
-    basedir           => $ssl_dir,
-    pkey              => "$ssl_dir/$elastic_key",
-    cert              => "$ssl_dir/$elastic_crt",
-    in_pass           => "",
-    out_pass          => "",
+  java_ks {"eleastic_instance_${elastic_instance}_keystore_ca":
+    ensure            => 'latest',
+    certificate       => $elastic_ca_cert,
+    target            => "${keystore_dir}/${elastic_instance}.ks",
+    password          => $keystore_passwd,
+    trustcacerts      => 'true',
+    }
+
+  java_ks {"eleastic_instance_${elastic_instance}_keystore_node":
+    ensure            => 'latest',
+    certificate       => $elastic_crt,
+    private_key       => $elastic_key,
+    target            => "${keystore_dir}/${elastic_instance}.ks",
+    password          => $keystore_passwd,
     }
 
   }
