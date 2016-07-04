@@ -19,8 +19,7 @@
 #
 output {
   elasticsearch {
-    hosts => [ <%= @elastic_address.map { |n| "\"https://#{n}:9200\"" }.join(', ') %> ]
-    ssl => true
+    hosts => [ <%= @elastic_address.map { |n| "\"http://#{n}:9200\"" }.join(', ') %> ]
     keystore => "<%= @keystore_dir %>/<%= @elastic_instance %>.ks"
     keystore_password => "<%= @keystore_passwd %>"
   }
