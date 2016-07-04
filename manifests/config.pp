@@ -130,8 +130,8 @@ class logconsumer::config (
 
   java_ks {"eleastic_instance_${elastic_instance}_keystore_node":
     ensure            => 'latest',
-    certificate       => $elastic_crt,
-    private_key       => $elastic_key,
+    certificate       => "${ssl_dir}/$elastic_crt",
+    private_key       => "${ssl_dir}/$elastic_key",
     target            => "${keystore_dir}/${elastic_instance}.ks",
     password          => $keystore_passwd,
     }
