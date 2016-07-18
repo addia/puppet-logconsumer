@@ -26,6 +26,7 @@ input {
     queue => "log-item"
     exchange_type => "topic"
     durable => "true"
+    prefetch_count => 1
     key => "<%= @passkey %>"
     user => "logstash"
     password => "<%= @password %>"

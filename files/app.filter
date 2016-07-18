@@ -1,0 +1,18 @@
+
+  filter {
+  if [type] == "application" {
+
+      grok {
+    match => { "message" => "%{TIMESTAMP_ISO8601:time} %{DATA:level} %{DATA:logger} %{DATA:thread} %{GREEDYDATA:detail} %{DATA:exception}"}
+         }
+       }
+  }
+
+
+   logstashforwarder::file { 'applogs':
+      paths  => [ '/opt/landregistry/applications/*/logs/*.log' ],
+      fields => {
+        'type' => 'application'
+      }
+    }
+
