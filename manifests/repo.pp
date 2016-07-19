@@ -10,19 +10,15 @@
 # ===========================
 #
 class logconsumer::repo (
-  $repo_version       = $logconsumer::repo_version,
-  $package_vers       = $logreceiver::params::package_vers,
-  $logstash_pkg       = $logconsumer::logstash_pkg
+  $repo_version       = $logconsumer::params::repo_version,
+  $package_vers       = $logconsumer::params::package_vers,
+  $package_name       = $logconsumer::params::package_name
 ) inherits logconsumer::params {
 
-  notify { "Creating repo for: ${::osfamily}": }
+  notify { "Creating repo for: ${package_name}": }
 
   case $::osfamily {
     'RedHat': {
-      package { 'epel-release':
-        ensure        => 'present',
-        }
-
       yumrepo { 'logstash':
         ensure        => 'present',
         descr         => 'Elastic Logstash Repository',
