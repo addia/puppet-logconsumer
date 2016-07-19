@@ -26,7 +26,7 @@ PIDFile=/run/logstash.pid
 
 ExecStart=/opt/logstash/bin/logstash agent -f <%= @config_dir %>
 ExecReload=/bin/kill -HUP $MAINPID
-ExecStop=/bin/kill -s TERM $MAINPID
+ExecStop=/bin/kill -15 $MAINPID
 PrivateTmp=true
 Restart=on-failure
 
