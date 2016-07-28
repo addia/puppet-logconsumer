@@ -22,7 +22,7 @@ class logconsumer::params {
   $rabbit_p12         = 'rabbitmq-client.p12'
   $elastic_key        = 'elastic.key'
   $elastic_crt        = 'elastic.crt'
-  $elastic_ca_cert    = '/etc/pki/ca-trust/source/anchors/elk_ca_cert.crt'
+  $ssl_cacert_file    = '/etc/pki/ca-trust/source/anchors/elk_ca_cert.crt'
   $keystore_dir       = "${ssl_dir}"
   $keystore_passwd    = "keystore_pass"
   $service            = 'logconsumer.service'

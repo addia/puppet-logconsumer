@@ -21,7 +21,7 @@
 #     rabbit_p12         = rabbitmq-client p12 cert file
 #     elastic_key        = elastic key
 #     elastic_crt        = elastic cert
-#     elastic_ca_cert    = the ELK CA certificate
+#     ssl_cacert_file    = the CA certificate
 #     keystore_dir       = path for the keystore
 #     keystore_passwd    = the keystore password
 #     service            = systemd service file name
@@ -65,7 +65,7 @@ class logconsumer (
   $rabbit_p12         = $logreceiver::params::rabbit_p12,
   $elastic_key        = $logconsumer::params::elastic_key,
   $elastic_crt        = $logconsumer::params::elastic_crt,
-  $elastic_ca_cert    = $logconsumer::params::elastic_ca_cert,
+  $ssl_cacert_file    = $logconsumer::params::ssl_cacert_file,
   $keystore_dir       = $logconsumer::params::keystore_dir,
   $keystore_passwd    = $logconsumer::params::keystore_passwd,
   $service            = $logconsumer::params::service,

@@ -21,7 +21,7 @@ class logconsumer::config (
   $rabbit_p12         = $logconsumer::params::rabbit_p12,
   $elastic_key        = $logconsumer::params::elastic_key,
   $elastic_crt        = $logconsumer::params::elastic_crt,
-  $elastic_ca_cert    = $logconsumer::params::elastic_ca_cert,
+  $ssl_cacert_file    = $logconsumer::params::ssl_cacert_file,
   $keystore_dir       = $logconsumer::params::keystore_dir,
   $keystore_passwd    = $logconsumer::params::keystore_passwd,
   $service            = $logconsumer::params::service,
@@ -122,7 +122,7 @@ class logconsumer::config (
 
   java_ks {"eleastic_instance_${elastic_instance}_keystore_ca":
     ensure            => 'latest',
-    certificate       => $elastic_ca_cert,
+    certificate       => $ssl_cacert_file,
     target            => "${keystore_dir}/${elastic_instance}.ks",
     password          => $keystore_passwd,
     trustcacerts      => 'true',
