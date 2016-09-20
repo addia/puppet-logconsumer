@@ -31,7 +31,7 @@ class logconsumer::params {
   $elastic_address    = hiera('elk_stack_elastic_address')
   $elastic_instance   = hiera('elk_stack_elastic_instance')
   $package_name       = 'logstash'
-  $package_vers       = '2.3.3-1'
+  $package_vers       = '2.3.4-1'
   $repo_version       = '2.3'
 
 }
