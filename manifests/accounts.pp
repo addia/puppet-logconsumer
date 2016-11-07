@@ -15,7 +15,7 @@ class logconsumer::accounts (
   $package_name       = $logconsumer::params::package_name
 ) inherits logconsumer::params {
 
-  notify { "Creating accounts for: ${package_name}": }
+# notify { "Creating accounts for: ${package_name}": }
 
   group {  $group:
     ensure     => present,

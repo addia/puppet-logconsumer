@@ -32,7 +32,7 @@ class logconsumer::config (
 
 ) inherits logconsumer::params {
 
-  notify { "Creating config files for: ${package_name}": }
+# notify { "Creating config files for: ${package_name}": }
 
   $config_input       = "$config_dir/03_logstash-mq-input.conf"
   $config_filter      = "$config_dir/10_filter.conf"

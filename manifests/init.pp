@@ -78,7 +78,7 @@ class logconsumer (
   $repo_version       = $logconsumer::params::repo_version
 ) inherits logconsumer::params {
 
-    notify { "Installing and configuring ${package_name}": }
+#   notify { "Installing and configuring ${package_name}": }
 
     anchor { 'logconsumer::begin': } ->
     class { '::logconsumer::accounts': } ->

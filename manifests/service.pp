@@ -16,7 +16,7 @@ class logconsumer::service (
 
 ) inherits logconsumer::params {
 
-  notify { "Configuring service: ${package_name}": }
+# notify { "Configuring service: ${package_name}": }
   
   file { $systemd_file:
     ensure              => file,

@@ -15,7 +15,7 @@ class logconsumer::repo (
   $package_name       = $logconsumer::params::package_name
 ) inherits logconsumer::params {
 
-  notify { "Creating repo for: ${package_name}": }
+# notify { "Creating repo for: ${package_name}": }
 
   case $::osfamily {
     'RedHat': {
