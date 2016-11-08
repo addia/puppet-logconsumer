@@ -23,9 +23,9 @@ output {
     keystore => "<%= @keystore_dir %>/<%= @elastic_instance %>.ks"
     keystore_password => "<%= @keystore_passwd %>"
   }
-  stdout {
-    codec => rubydebug
-  }
+# stdout {
+#   codec => rubydebug
+# }
 }
 
 
