@@ -23,9 +23,12 @@ output {
     keystore => "<%= @keystore_dir %>/<%= @elastic_instance %>.ks"
     keystore_password => "<%= @keystore_passwd %>"
   }
-# stdout {
-#   codec => rubydebug
-# }
+<% if @logstash_debug -%>
+  file {
+    codec => jason
+    path => "/var/log/logstash/debug.log"
+  }
+<% end -%>
 }
 
 

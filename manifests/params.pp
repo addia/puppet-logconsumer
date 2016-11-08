@@ -15,6 +15,7 @@ class logconsumer::params {
   $group              = 'logstash'
   $password           = hiera('elk_stack_logstash_passwd')
   $passkey            = hiera('elk_stack_logstash_key')
+  $logstash_debug     = hiera('elk_stack_logstash_debug')
   $config_dir         = '/etc/logstash/conf.d'
   $ssl_dir            = '/etc/logstash/ssl'
   $rabbit_key         = 'rabbitmq-client.key'

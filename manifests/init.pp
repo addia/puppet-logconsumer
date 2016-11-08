@@ -14,6 +14,7 @@
 #     group              = run as group
 #     password           = logstash password
 #     passkey            = logstash keypass
+#     logstash_debug     = logstash debug on/off setting
 #     config_dir         = prospector plug-in directory path
 #     ssl_dir            = certificate path
 #     rabbit_key         = rabbit key
@@ -56,13 +57,14 @@
 class logconsumer (
   $user               = $logconsumer::params::user,
   $group              = $logconsumer::params::group,
-  $password           = $logreceiver::params::password,
-  $passkey            = $logreceiver::params::passkey,
+  $password           = $logconsumer::params::password,
+  $passkey            = $logconsumer::params::passkey,
+  $logstash_debug     = $logconsumer::params::logstash_debug,
   $config_dir         = $logconsumer::params::config_dir,
   $ssl_dir            = $logconsumer::params::ssl_dir,
   $rabbit_key         = $logconsumer::params::rabbit_key,
   $rabbit_crt         = $logconsumer::params::rabbit_crt,
-  $rabbit_p12         = $logreceiver::params::rabbit_p12,
+  $rabbit_p12         = $logconsumer::params::rabbit_p12,
   $elastic_key        = $logconsumer::params::elastic_key,
   $elastic_crt        = $logconsumer::params::elastic_crt,
   $ssl_cacert_file    = $logconsumer::params::ssl_cacert_file,
@@ -74,7 +76,7 @@ class logconsumer (
   $elastic_address    = $logconsumer::params::elastic_address,
   $elastic_instance   = $logconsumer::params::elastic_instance,
   $package_name       = $logconsumer::params::package_name,
-  $package_vers       = $logreceiver::params::package_vers,
+  $package_vers       = $logconsumer::params::package_vers,
   $repo_version       = $logconsumer::params::repo_version
 ) inherits logconsumer::params {
 

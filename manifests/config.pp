@@ -14,6 +14,7 @@ class logconsumer::config (
   $group              = $logconsumer::params::group,
   $password           = $logconsumer::params::password,
   $passkey            = $logconsumer::params::passkey,
+  $logstash_debug     = $logconsumer::params::logstash_debug,
   $config_dir         = $logconsumer::params::config_dir,
   $ssl_dir            = $logconsumer::params::ssl_dir,
   $rabbit_key         = $logconsumer::params::rabbit_key,
