@@ -10,19 +10,21 @@
 # ===========================
 #
 class logconsumer::accounts (
-  $user               = $logconsumer::params::user,
-  $group              = $logconsumer::params::group,
-  $package_name       = $logconsumer::params::package_name
-) inherits logconsumer::params {
+  $user         = $logconsumer::params::user,
+  $group        = $logconsumer::params::group,
+  $package_name = $logconsumer::params::package_name
+  ) {
 
-# notify { "Creating accounts for: ${package_name}": }
+  include logconsumer::params
 
-  group {  $group:
-    ensure     => present,
-    gid        => 252
+  # notify { "Creating accounts for: ${package_name}": }
+
+  group { $group:
+    ensure => present,
+    gid    => 252
     }
 
-  user { $user: 
+  user { $user:
     ensure     => present,
     home       => '/var/lib/logstash',
     shell      => '/bin/bash',
